@@ -26,7 +26,7 @@ Essentially, all you'll need to do is just copy/symlink the scripts to somewhere
 personally use a `~/bin` folder as a personal scripts folder, so the following will work:
 
 ```sh
-ln -s ./sticky ./visticky ~/bin
+ln -s $(pwd)/sticky $(pwd)/visticky ~/bin
 ```
 
 If, like me, you use bash as your shell and you'd like to have the list of available notes as a
