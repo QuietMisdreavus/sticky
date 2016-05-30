@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+sticky_dir=$HOME/.local/share/sticky
+if [ -v XDG_DATA_HOME ] ; then
+	sticky_dir=$XDG_DATA_HOME/sticky
+fi
+
+if [ ! -d "$sticky_dir" ] ; then
+	mkdir -p $sticky_dir
+fi
+
+if [ "$1" ] ; then
+	sticky_file=$sticky_dir/$1
+	if [ -v VISUAL ] ; then
+		$VISUAL "$sticky_file"
+	elif [ -v EDITOR ] ; then
+		$EDITOR "$sticky_file"
+	else
+		nano "$sticky_file"
+	fi
+	if [ -e "$sticky_file" -a ! -s "$sticky_file" ] ; then
+		rm "$sticky_file"
+	fi
+else
+	echo "no file given, options are:"
+	ls "$sticky_dir"
+fi

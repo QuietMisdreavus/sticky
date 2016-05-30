@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+sticky_dir=$HOME/.local/share/sticky
+if [ -v XDG_DATA_HOME ] ; then
+	sticky_dir=$XDG_DATA_HOME/sticky
+fi
+
+if [ ! -d "$sticky_dir" ] ; then
+	mkdir -p $sticky_dir
+fi
+
+if [ "$1" ] ; then
+	if [ -e "$sticky_dir/$1" ] ; then
+		cat "$sticky_dir/$1"
+	fi
+else
+	ls "$sticky_dir"
+fi
